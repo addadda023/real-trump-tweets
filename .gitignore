@@ -1,0 +1,13 @@
+/venv/
+/templates/index_backup.html
+Pipfile
+Pipfile.lock
+main.py
+AI_generated_tweets_processed_final.csv
+/data/
+/notebooks/
+/.ipynb_checkpoints/
+/src/bonsai_practice.py
+/src/explore_data.py
+/src/insert_to_es.py
+/src/process_generated_tweets.py
