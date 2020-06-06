@@ -18,6 +18,7 @@ class ElasticConn:
         self.connect()
 
     def connect(self):
+        os.environ['BONSAI_URL'] = 'https://5prai3p28u:1hdzyfs6ss@beech-780794989.us-east-1.bonsaisearch.net:443'
         bonsai = os.environ['BONSAI_URL']
         auth = re.search('https\:\/\/(.*)\@', bonsai).group(1).split(':')
         host = bonsai.replace('https://%s:%s@' % (auth[0], auth[1]), '')
