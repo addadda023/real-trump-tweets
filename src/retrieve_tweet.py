@@ -51,4 +51,4 @@ def search_tweets(query):
         # logging.info("%(timestamp)s %(author)s: %(tweet)s" % res['hits']['hits'][0]['_source'])
         return res['hits']['hits'][0]["_source"]['tweet']
     else:
-        return 'Oops couldnt understand. Try again'
+        return 'Oops couldnt understand. Try again.'
