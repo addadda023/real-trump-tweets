@@ -2,6 +2,7 @@ from .extensions import es
 from .utils import process_str
 import logging
 import random
+import time
 
 # Log transport
 logging.basicConfig(level=logging.INFO)
@@ -47,6 +48,9 @@ def search_tweets(query):
     res = driver.search(index=index, body=body)
     hits = res['hits']['total']['value']
     logging.info('Got %d hits' % hits)
+
+    # :)
+    time.sleep(1.5)
     if hits >= 1:
         # logging.info("%(timestamp)s %(author)s: %(tweet)s" % res['hits']['hits'][0]['_source'])
         return res['hits']['hits'][0]["_source"]['tweet']
