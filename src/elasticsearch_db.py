@@ -18,7 +18,6 @@ class ElasticConn:
         self.connect()
 
     def connect(self):
-        os.environ['BONSAI_URL'] = 'https://5prai3p28u:1hdzyfs6ss@beech-780794989.us-east-1.bonsaisearch.net:443'
         bonsai = os.environ['BONSAI_URL']
         auth = re.search('https\:\/\/(.*)\@', bonsai).group(1).split(':')
         host = bonsai.replace('https://%s:%s@' % (auth[0], auth[1]), '')
@@ -53,3 +52,17 @@ class ElasticConn:
         if not self.driver:
             return self.connect()
         return self.driver
+
+    def get_index(self):
+        return list(self.driver.indices.get_alias().keys())[0]
+
+    def search(self, index, body):
+        return self.driver.search(index=index, body=body)
+
+    def insert(self, index, body):
+        try:
+            # self.get_es()
+            es_object = self.driver.index(index=index, body=body)
+            return es_object.get('_id')
+        except Exception as e:
+            logging.error('Error inserting {}'.format(e))
