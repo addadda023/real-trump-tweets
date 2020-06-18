@@ -32,7 +32,7 @@ body = \
 
 def search_tweets(query):
     driver = es.get_es()
-    index = list(driver.indices.get_alias().keys())[0]
+    # index = list(driver.indices.get_alias().keys())[0]
 
     # Process query
     query = process_str(query)
@@ -45,7 +45,7 @@ def search_tweets(query):
         body['query']['function_score']['query']['match']['tweet']['query'] = random.choice(list_of_queries)
 
     # Search
-    res = driver.search(index=index, body=body)
+    res = es.search(body=body)
     hits = res['hits']['total']['value']
     logging.info('Got %d hits' % hits)
 
